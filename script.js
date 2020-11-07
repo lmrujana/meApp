@@ -10,9 +10,11 @@ function quoteGenerator() {
         var quoteBody = $('<p>');
         var quoteAuthor = $('<small>');
         quoteBody.text(randomQuote.text);
-        quoteBody.addClass('uk-text-bold');
+        quoteBody.addClass('has-text-weight-bold is-size-3');
         quoteAuthor.text(randomQuote.author);
-        // $('#quote-container').append(quoteBody);
-        // $('#quote-container').append(quoteAuthor);
+        quoteAuthor.addClass('is-pulled-right');
+        $('#quote-container').append(quoteBody);
+        $('#quote-container').append(quoteAuthor);
     })
 }
+quoteGenerator();
