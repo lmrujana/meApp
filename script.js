@@ -17,4 +17,34 @@ function quoteGenerator() {
         $('#quote-container').append(quoteAuthor);
     })
 }
-quoteGenerator();
+
+// This Function asks the User if we can use current location and runs the showPosition function which gets the LAT and LON var
+    function getLocation() {
+        (navigator.geolocation); {
+        navigator.geolocation.getCurrentPosition(showPosition);} 
+    }
+    function showPosition(position) {
+    var lat = position.coords.latitude
+    var lon = position.coords.longitude
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=816992ff6a89882120cc71140b076bef&units=imperial"
+  
+          $.ajax({
+          url: queryURL,
+          method: "GET"
+          }).then(function(response) {
+              console.log(response)
+              var cityName = response.name;
+              var cityTemp = response.main.temp
+              var cityHumidity = response.main.humidity
+              var clouds = response.weather[0].icon;
+              var iconURL = "http://openweathermap.org/img/w/" + clouds + ".png"
+              var weatherImage = $("<img>").attr("src", iconURL)
+              $('#weather-container').prepend(cityName);
+              $('#weather-container').append("<br>Current Temp(F): " + cityTemp + "&deg");
+              $('#weather-container').append("<br>Humidity: " + cityHumidity + "%");
+              $('#image').append(weatherImage);
+          })
+  }
+
+    getLocation(); 
+    quoteGenerator();
