@@ -49,6 +49,122 @@ function quoteGenerator() {
     getLocation(); 
     quoteGenerator();
 
+
+//NY Times API
+
+var section = "home"
+
+function articleSearch (){
+
+    var key = "2MlxruKUsf94PqwoSGi3oOM3YvCl1Gab"  
+    var queryURL = "https://api.nytimes.com/svc/topstories/v2/" + section + ".json?api-key=" + key;
+                  
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(createArticles);
+
+    };
+
+function createArticles (NyTData){
+
+        clearCardContainer();
+
+        let artQty = 3
+      
+        for (let i = 0; i < artQty; i++){
+
+        let url = NyTData.results[i].url;
+   
+        let thumbnail = NyTData.results[i].multimedia[1].url;
+        let thumbnailAlt = NyTData.results[i].multimedia[1].caption;
+        let title = NyTData.results[i].title;
+        let section = NyTData.results[i].section;
+        let subsection = NyTData.results[i].subsection;
+
+        let link = $("<a>");
+        link.attr("href", url);
+        link.attr("target", "blank");
+
+        let card = $("<div>");
+        card.attr("id","generated-cards");
+        card.addClass("card");
+
+        let cardContent = $("<div>");
+        cardContent.addClass("card-content");
+
+        let media = $("<div>");
+        media.addClass("media");
+
+        let mediaLeft = $("<div>");
+        mediaLeft.addClass("media-left");
+
+        let figure = $("<figure>");
+        figure.addClass("image is-48x48")
+
+        let img = $("<img>");
+        img.attr("src",thumbnail);
+        img.attr("alt",thumbnailAlt);
+        img.attr("id","thumbnail");
+
+        let mediaContent = $("<div>");
+        mediaContent.addClass("media-content");
+
+        let genTitle = $("<p>");
+        genTitle.addClass("title is-4");
+        genTitle.text(title);
+
+        let genSubTitle = $("<p>");
+        genSubTitle.addClass("subtitle is-6");
+        genSubTitle.text("Section: ")
+
+        let sectionValue = $("<span>");
+        sectionValue.text(section + " ")
+
+        let subSectionValue = $("<span>");
+        subSectionValue.text(subsection);
+        
+
+        link.append(card);
+        card.append(cardContent);
+        cardContent.append(media);
+        media.append(mediaLeft);
+        mediaLeft.append(figure);
+        figure.append(img);
+        media.append(mediaContent);
+        mediaContent.append(genTitle)
+        genSubTitle.append(sectionValue);
+        genSubTitle.append(subSectionValue);
+        mediaContent.append(genSubTitle);
+        $("#articlesContainer").append(link);
+        
+        if(i+1 == artQty){
+            
+            $("#articlesContainer").addClass("fade-in");
+            $("#articlesContainer").css({ display: "initial" });
+        };
+        };
+        
+    };
+
+function clearCardContainer() {
+
+    $("#articlesContainer").empty();
+};
+
+articleSearch ();
+
+$(".nyArticles").on("click", function(){
+
+    $("#articlesContainer").css({ display: "none" });
+    $(".nyArticles").removeAttr("id");
+    $(this).attr("id","clicked");
+    section = this.dataset.section;
+    console.log(this.dataset.section)
+    articleSearch ();
+
+});
+
     // Adding Date and Time element to header
     function timeCheck() {
         var timeUTC = new Date();
@@ -56,3 +172,4 @@ function quoteGenerator() {
         $("#time").append(timeUTC.toLocaleTimeString("en-US"));
         }
         timeCheck ();
+
