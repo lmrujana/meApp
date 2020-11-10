@@ -34,13 +34,13 @@ function quoteGenerator() {
           }).then(function(response) {
               console.log(response)
               var cityName = response.name;
-              var cityTemp = response.main.temp
+              var cityTemp = Math.floor(response.main.temp)
               var cityHumidity = response.main.humidity
               var clouds = response.weather[0].icon;
               var iconURL = "http://openweathermap.org/img/w/" + clouds + ".png"
-              var weatherImage = $("<img>").attr("src", iconURL)
+              var weatherImage = $("<img>").attr("src", iconURL);
               $('#weather-container').prepend(cityName);
-              $('#weather-container').append("<br>Current Temp(F): " + cityTemp + "&deg");
+              $('#weather-container').append("<br>Temp(F): " + cityTemp + "&deg");
               $('#weather-container').append("<br>Humidity: " + cityHumidity + "%");
               $('#image').append(weatherImage);
           })
@@ -48,6 +48,7 @@ function quoteGenerator() {
 
     getLocation(); 
     quoteGenerator();
+
 
 //NY Times API
 
@@ -163,3 +164,12 @@ $(".nyArticles").on("click", function(){
     articleSearch ();
 
 });
+
+    // Adding Date and Time element to header
+    function timeCheck() {
+        var timeUTC = new Date();
+        $("#date").append(timeUTC.toLocaleDateString("en-US"))
+        $("#time").append(timeUTC.toLocaleTimeString("en-US"));
+        }
+        timeCheck ();
+
