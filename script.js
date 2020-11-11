@@ -179,3 +179,49 @@ $(".nyArticles").on("click", function(){
         }
         timeCheck ();
 
+
+//This code controls the behavior of the Notes section
+displaySavedNotes();
+
+var savedNotes;
+if (localStorage.getItem('savedNotes')) {
+    savedNotes = JSON.parse(localStorage.getItem('savedNotes'));
+} else {
+    savedNotes = [];
+}
+
+$('#save-button').on('click', function (event) {
+    event.preventDefault();
+    var newNote = $('#text-area').val().trim();
+    // console.log(newNote);
+    if (newNote) {
+        var newElementBox = $('<div>').addClass('box')
+        var newElementNote = $('<p>').text(newNote);
+        newElementNote.addClass('block');
+        newElementBox.append(newElementNote);
+        $('#saved-notes').append(newElementBox);
+        savedNotes.push(newNote);
+        localStorage.setItem('savedNotes', JSON.stringify(savedNotes));
+        $('#text-area').val('');
+    };
+});
+
+$('#delete-button').on('click', function(event){
+    event.preventDefault();
+    $('#saved-notes div').first().remove();
+    savedNotes.shift();
+    localStorage.setItem('savedNotes',JSON.stringify(savedNotes));
+});
+
+function displaySavedNotes() {
+    if (localStorage.getItem('savedNotes')) {
+        savedNotesArray = JSON.parse(localStorage.getItem('savedNotes'))
+        savedNotesArray.forEach(function (note) {
+            var newElementBox = $('<div>').addClass('box')
+            var newElementNote = $('<p>').text(note);
+            newElementNote.addClass('block');
+            newElementBox.append(newElementNote)
+            $('#saved-notes').append(newElementBox);
+        })
+    };
+}
