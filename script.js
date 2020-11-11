@@ -28,6 +28,7 @@ function showPosition(position) {
     var lat = position.coords.latitude
     var lon = position.coords.longitude
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=816992ff6a89882120cc71140b076bef&units=imperial"
+// <<<<<<< add-notes-dynamic-behavior
 
     $.ajax({
         url: queryURL,
@@ -49,6 +50,35 @@ function showPosition(position) {
 
 getLocation();
 quoteGenerator();
+=======
+  
+          $.ajax({
+          url: queryURL,
+          method: "GET"
+          }).then(function(response) {
+              console.log(response)
+              var cityName = $("<p>")
+              cityName.addClass("title is-4");
+              cityName.text(response.name);
+              var cityTemp = Math.floor(response.main.temp)
+              var cityHumidity = response.main.humidity
+              var clouds = response.weather[0].icon;
+              var iconURL = "http://openweathermap.org/img/w/" + clouds + ".png"
+              var weatherImage = $("<img>").attr("src", iconURL);
+              var sunrise = new Date(response.sys.sunrise * 1000)
+              var sunset = new Date(response.sys.sunset * 1000);
+              $('#weather-container').prepend(cityName);
+              $('#weather-container').append("<br>Temp(F): " + cityTemp + "&deg");
+              $('#weather-container').append("<br>Humidity: " + cityHumidity + "%");
+              $("#weather-container").append("<br>Sunrise: " + sunrise.toLocaleTimeString("en-us"));
+              $("#weather-container").append("<br>Sunset: " + sunset.toLocaleTimeString("en-us"));
+              $('#image').append(weatherImage);
+          })
+  }
+
+    getLocation(); 
+    quoteGenerator();
+// >>>>>>> main
 
 
 //NY Times API
