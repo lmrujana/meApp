@@ -1,6 +1,7 @@
-/* #quote-container{
-    background-color: rgba(250,250,250, 0.75);
-} */
+ #quote-container{
+    overflow: scroll;
+    height: 250px;
+} 
 
 .nyArticles {
     display: inline-block;
@@ -9,29 +10,69 @@
  
 }
 
-#clicked{
-    background-color: white;
-    color: rgb(41, 146, 41);
+
+#nyTimesContainer {
+    padding: inherit;
+    background-color: #3298dc;
+    border-radius: 5px;
+
 }
 
+#btnContainer{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#clicked{
+    background-color: white;
+    color: #00d1b2;
+}
 
 #generated-cards {
     
-    width: 100%;
-    margin-top: 10px;
-    
+    transition: all .2s ease-in-out;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 25%;
+    overflow: auto;
+   
 }
 
+.card-content {
+    
+    padding: 1rem;
+}
+
+.title.is-4 {
+    font-size: 0.9rem;
+    height: 60px;
+    overflow: hidden;
+}
+
+.subtitle.is-6 {
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
 
 #articlesContainer{
     display: none;
+    overflow: scroll;
+    height: 500px;
+}
+
+#articlesContainer .card:hover {
+    
+    box-shadow: 5px 10px 8px #888888;
+    background-color: lavenderblush;
+   
 }
 
 #thumbnail{
     border-radius: 10px;
 }
-
-
 
 
 .fade-in {
