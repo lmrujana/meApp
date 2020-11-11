@@ -160,6 +160,46 @@ function createArticles(NyTData) {
     let mediaContent = $("<div>");
     mediaContent.addClass("media-content");
 
+$('#save-button').on('click', function (event) {
+    event.preventDefault();
+    var newNote = $('#text-area').val().trim();
+    // console.log(newNote);
+    if (newNote) {
+        var newElementBox = $('<div>').addClass('box')
+        var newElementNote = $('<p>').text(newNote);
+        newElementNote.addClass('block');
+        newElementBox.append(newElementNote);
+        $('#saved-notes').append(newElementBox);
+        savedNotes.push(newNote);
+        localStorage.setItem('savedNotes', JSON.stringify(savedNotes));
+        $('#text-area').val('');
+    };
+});
+
+$('#delete-button').on('click', function(event){
+    event.preventDefault();
+    //console.log($('#saved-notes:first-child'));
+    $('#saved-notes div').first().remove();
+    savedNotes.shift();
+    localStorage.setItem('savedNotes',JSON.stringify(savedNotes));
+})
+
+function displaySavedNotes() {
+    if (localStorage.getItem('savedNotes')) {
+        savedNotesArray = JSON.parse(localStorage.getItem('savedNotes'))
+        savedNotesArray.forEach(function (note) {
+            var newElementBox = $('<div>').addClass('box')
+            var newElementNote = $('<p>').text(note);
+            newElementNote.addClass('block');
+            newElementBox.append(newElementNote)
+            $('#saved-notes').append(newElementBox);
+        })
+    }
+};
+//Note 
+
+
+
     let genTitle = $("<p>");
     genTitle.addClass("title is-4");
     genTitle.text(title);
@@ -216,3 +256,4 @@ function timeCheck() {
   $("#time").append(timeUTC.toLocaleTimeString("en-US"));
 }
 timeCheck();
+
