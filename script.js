@@ -220,3 +220,4 @@ function displaySavedNotes() {
         })
     }
 };
+//Note 
