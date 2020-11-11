@@ -15,9 +15,9 @@
     <section class="hero is-dark">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title is-1">meApp</h1>
-                <p class="lead" id="date"></p>
-                <p class="lead" id="time"></p>
+                <p class="title is-1">meApp</p>
+                <p id="date"><p> 
+                <p id="time"></p>
             </div>
         </div>
     </section>
@@ -33,7 +33,7 @@
 
                         </article>
                         <article class="tile is-child notification is-warning subtitle" id="weather-container">
-                            <figure id="image" class="image is-64x64"></figure>
+                            <figure id="image" class="image is-96x96"></figure>
                         </article>
 
                     </div>
@@ -41,42 +41,29 @@
                     <!--NyTimes articles goes here-->
                     <div class="tile is-parent is-4">
 
-                        <article class="tile is-child notification is-info">
-                            <p class="title"> NyT Top Stories</p>
-                        
-                            <a id="clicked" class="button is-primary is-inverted is-outlined is-small nyArticles" data-section="home">Home</a>
-                            <a class="button is-primary is-inverted is-outlined is-small nyArticles" data-section="us">US</a>
-                            <a class="button is-primary is-inverted is-outlined is-small nyArticles" data-section="world">World</a>
-                            <a class="button is-primary is-inverted is-outlined is-small nyArticles" data-section="science">Science</a>
-                            <a class="button is-primary is-inverted is-outlined is-small nyArticles" data-section="arts">Arts</a>
-                            <br>
-                            <br>
+                        <article id="nyTimesContainer" class="tile is-child is-info">
+
+                            <div id="btnContainer">
+                                <p class="title"> NyT Top Stories</p>
+                                <a id="clicked" class="button is-primary is-inverted is-outlined is-small nyArticles"
+                                    data-section="home">Home</a>
+                                <a class="button is-primary is-inverted is-outlined is-small nyArticles"
+                                    data-section="us">US</a>
+                                <a class="button is-primary is-inverted is-outlined is-small nyArticles"
+                                    data-section="world">World</a>
+                                <a class="button is-primary is-inverted is-outlined is-small nyArticles"
+                                    data-section="science">Science</a>
+                                <a class="button is-primary is-inverted is-outlined is-small nyArticles"
+                                    data-section="arts">Arts</a>
+                            </div>
 
                             <div id="articlesContainer">
-                                
+
                             </div>
-                            <!--  Article Generation Example
-                            <a href="http://example.com" target="blank">
-                            <div id="generated-cards" class="card">
-                                <div  class="card-content">
-                                  <div class="media">
-                                    <div class="media-left">
-                                      <figure class="image is-48x48">
-                                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                                      </figure>
-                                    </div>
-                                    <div class="media-content">
-                                      <p class="title is-4">John Smith</p>
-                                      <p class="subtitle is-6">Section: <span id="section-value">US, </span> <span id="subsection">Politics</span></p>
-                                    </div>
-                                  </div>
-                    
-                                </div>
-                              </div>
-                            </a> -->
+    
                         </article>
 
-                       
+
 
                     </div>
 
@@ -85,23 +72,26 @@
                         <div class="tile is-child box has-background-success-light">
                             <h3 class="title">Notes</h3>
                             <form>
-                                <textarea id="text-area" class="textarea is-primary" rows="5" placeholder="Add your notes here!"></textarea>
+                                <textarea class="textarea is-primary" rows="5"
+                                    placeholder="Add your notes here!"></textarea>
                                 <br>
                                 <!-- This buttons will reload the page. This needs to be fixed in the script -->
-                                <button id="save-button" class="button is-primary">Save</button> 
-                                <button id="delete-button" class="button is-danger">Delete</button>
+                                <button class="button is-primary">Save</button>
+                                <button class="button is-danger">Delete</button>
                             </form>
                             <br>
-
-                            <!-- Here go the notes saved by the user -->
                             <div id="saved-notes" class="box">
-                                <!-- <div class='box'>
+                                <div class='box'>
                                     <p class="block">Sample note one</p>
                                 </div>
                                 <div class='box'>
                                     <p class="block">Sample note two</p>
-                                </div> -->
-                                <!-- note -->
+
+                   
+
+                                </div>
+                                <!-- Here go the notes saved by the user -->
+
                             </div>
 
 
