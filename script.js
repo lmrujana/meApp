@@ -34,8 +34,8 @@ function quoteGenerator() {
           }).then(function(response) {
               console.log(response)
               var cityName = $("<p>")
-              cityName.addClass("title is-5");
-              cityName.text(response.name);
+            //   cityName.addClass("title is-3");
+              cityName = response.name;
               var cityTemp = Math.floor(response.main.temp)
               var cityHumidity = response.main.humidity
               var clouds = response.weather[0].icon;
@@ -43,12 +43,36 @@ function quoteGenerator() {
               var weatherImage = $("<img>").attr("src", iconURL);
               var sunrise = new Date(response.sys.sunrise * 1000)
               var sunset = new Date(response.sys.sunset * 1000);
-              $('#weather-container').prepend(cityName);
-              $('#weather-container').append("<br>Temp(F): " + cityTemp + "&deg");
-              $('#weather-container').append("<br>Humidity: " + cityHumidity + "%");
-              $("#weather-container").append("<br>Sunrise: " + sunrise.toLocaleTimeString("en-us"));
-              $("#weather-container").append("<br>Sunset: " + sunset.toLocaleTimeString("en-us"));
+            //   $('#weather-container').prepend(cityName);
+            //   $('#weather-container').append("<br><strong>Temp(F): " + cityTemp + "&deg    ");
+            //   $('#weather-container').append("<strong>Humidity: " + cityHumidity + "%");
+            //   $("#weather-container").append("<br><strong>Sunrise: " + sunrise.toLocaleTimeString("en-us"));
+            //   $("#weather-container").append("<br><strong>Sunset: " + sunset.toLocaleTimeString("en-us"));
               $('#image').append(weatherImage);
+              $("#cityName").append("City of " + cityName)
+              $("#cityName2").append("City of " + cityName)
+              $("#temp").append(" " + cityTemp)
+              $("#humidity").append(" " + cityHumidity + "%")
+              $("#sunrise").append(" " + sunrise.toLocaleTimeString("en-us"))
+              $("#sunset").append(" " + sunset.toLocaleTimeString("en-us"))
+
+            var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=816992ff6a89882120cc71140b076bef&units=imperial"
+            $.ajax({
+                url: forecastURL,
+                method: "GET"
+                }).then(function(response2) {
+                    console.log(response2)
+                    var cityTemp2 = Math.floor(response2.list[6].main.temp);
+                    var cityHumidity2 = response2.list[6].main.humidity;
+                    var clouds2 = response2.list[6].weather[0].icon;
+                    var iconURL2 = "http://openweathermap.org/img/w/" + clouds2 + ".png"
+                    var weatherImage2 = $("<img>").attr("src", iconURL2);
+                    var pop2 = response2.list[6].pop * 100;
+                    $("#temp2").append(" " + cityTemp2);
+                    $("#humidity2").append(" " + cityHumidity2 + "%")
+                    $('#image2').append(weatherImage2)
+                    $("#pop").append(" " + pop2)
+                })
           })
   }
 
@@ -129,7 +153,6 @@ function createArticles (NyTData){
 
         let subSectionValue = $("<span>");
         subSectionValue.text(subsection);
-        
 
         link.append(card);
         card.append(cardContent);
