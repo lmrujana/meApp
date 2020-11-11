@@ -34,7 +34,7 @@ function quoteGenerator() {
           }).then(function(response) {
               console.log(response)
               var cityName = $("<p>")
-              cityName.addClass("title is-4");
+              cityName.addClass("title is-5");
               cityName.text(response.name);
               var cityTemp = Math.floor(response.main.temp)
               var cityHumidity = response.main.humidity
