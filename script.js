@@ -70,7 +70,7 @@ function createArticles (NyTData){
 
         clearCardContainer();
 
-        let artQty = 3
+        let artQty = 10
       
         for (let i = 0; i < artQty; i++){
 
@@ -119,7 +119,7 @@ function createArticles (NyTData){
         genSubTitle.text("Section: ")
 
         let sectionValue = $("<span>");
-        sectionValue.text(section + " ")
+        sectionValue.text(section + ", ")
 
         let subSectionValue = $("<span>");
         subSectionValue.text(subsection);
@@ -141,7 +141,7 @@ function createArticles (NyTData){
         if(i+1 == artQty){
             
             $("#articlesContainer").addClass("fade-in");
-            $("#articlesContainer").css({ display: "initial" });
+            $("#articlesContainer").css({ display: "block" });
         };
         };
         
