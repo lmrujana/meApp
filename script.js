@@ -227,6 +227,7 @@ $('#save-button').on('click', function (event) {
     var newNote = $('#text-area').val().trim();
     // console.log(newNote);
     if (newNote) {
+        $('#saved-notes').css('display', 'block');
         var newElementBox = $('<div>').addClass('box')
         var newElementNote = $('<p>').text(newNote);
         newElementNote.addClass('block');
@@ -242,11 +243,18 @@ $('#delete-button').on('click', function(event){
     event.preventDefault();
     $('#saved-notes div').first().remove();
     savedNotes.shift();
-    localStorage.setItem('savedNotes',JSON.stringify(savedNotes));
+    if(savedNotes.length){
+        localStorage.setItem('savedNotes',JSON.stringify(savedNotes));
+    }else{
+        localStorage.removeItem('savedNotes');
+        $('#saved-notes').css('display', 'none');
+    }
+    
 });
 
 function displaySavedNotes() {
     if (localStorage.getItem('savedNotes')) {
+        $('#saved-notes').css('display', 'block');
         savedNotesArray = JSON.parse(localStorage.getItem('savedNotes'))
         savedNotesArray.forEach(function (note) {
             var newElementBox = $('<div>').addClass('box')
