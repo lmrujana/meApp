@@ -106,8 +106,17 @@ function createArticles (NyTData){
 
         let url = NyTData.results[i].url;
    
-        let thumbnail = NyTData.results[i].multimedia[1].url;
-        let thumbnailAlt = NyTData.results[i].multimedia[1].caption;
+        let thumbnail = "";
+        let thumbnailAlt = "";
+
+        if (NyTData.results[i].multimedia){
+            thumbnail = NyTData.results[i].multimedia[1].url;
+            thumbnailAlt = NyTData.results[i].multimedia[1].caption;
+        } else {
+            thumbnail = "https://bulma.io/images/placeholders/96x96.png"
+            thumbnailAlt = "thumbnail"
+        };
+
         let title = NyTData.results[i].title;
         let section = NyTData.results[i].section;
         let subsection = NyTData.results[i].subsection;
