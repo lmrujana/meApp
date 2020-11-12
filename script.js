@@ -43,6 +43,9 @@ function quoteGenerator() {
               var weatherImage = $("<img>").attr("src", iconURL);
               var sunrise = new Date(response.sys.sunrise * 1000)
               var sunset = new Date(response.sys.sunset * 1000);
+              var date = new Date();
+              var month = date.getMonth()+1;
+              var day = date.getDate();            
             //   $('#weather-container').prepend(cityName);
             //   $('#weather-container').append("<br><strong>Temp(F): " + cityTemp + "&deg    ");
             //   $('#weather-container').append("<strong>Humidity: " + cityHumidity + "%");
@@ -55,6 +58,7 @@ function quoteGenerator() {
               $("#humidity").append(" " + cityHumidity + "%")
               $("#sunrise").append(" " + sunrise.toLocaleTimeString("en-us"))
               $("#sunset").append(" " + sunset.toLocaleTimeString("en-us"))
+              $("#today").append("<strong>" + month + "/" + day)
 
             var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=816992ff6a89882120cc71140b076bef&units=imperial"
             $.ajax({
@@ -68,10 +72,14 @@ function quoteGenerator() {
                     var iconURL2 = "http://openweathermap.org/img/w/" + clouds2 + ".png"
                     var weatherImage2 = $("<img>").attr("src", iconURL2);
                     var pop2 = response2.list[6].pop * 100;
+                    var date2 = new Date();
+                    var month2 = date2.getMonth()+1;
+                    var day2 = date2.getDate() + 1;
                     $("#temp2").append(" " + cityTemp2);
                     $("#humidity2").append(" " + cityHumidity2 + "%")
                     $('#image2').append(weatherImage2)
                     $("#pop").append(" " + pop2)
+                    $("#tomorrow").append("<strong>" + month2 + "/" + day2)
                 })
           })
   }
