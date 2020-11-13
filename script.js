@@ -215,7 +215,7 @@ function createArticles (NyTData){
         };
         $("#generated-cards.card").parent().each(function(){
                    
-            var faveBtn = $("<h1 class='readLaterBtn button is-primary is-small' style='left:80%; bottom: 35px; border-radius: 5px; text-align: center;'>Read<br>Later</h1>");
+            var faveBtn = $("<h1 class='readLaterBtn button is-primary is-small' style='line-height:1; left:80%; bottom: 35px; border-radius: 5px; text-align: center;'>Read<br>Later</h1>");
             $(this).after(faveBtn);
         })
     
@@ -256,12 +256,34 @@ $(".nyArticles").on("click", function(){
 
     // Adding Date and Time element to header
     function timeCheck() {
-        var timeUTC = new Date();
-        $("#date").append(timeUTC.toLocaleDateString("en-US"))
-        $("#time").append(timeUTC.toLocaleTimeString("en-US"));
+        var date = new Date();
+        var monthName = new Array(12)
+        monthName[0] = "January";
+        monthName[1] = "February";
+        monthName[2] = "March";
+        monthName[3] = "April";
+        monthName[4] = "May";
+        monthName[5] = "June";
+        monthName[6] = "July";
+        monthName[7] = "August";
+        monthName[8] = "September";
+        monthName[9] = "October"
+        monthName[10] = "November";
+        monthName[11] = "December";
+        var m = monthName[date.getMonth()]
+        var day = date.getDate();    
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+        var d = weekday[date.getDay()] 
+        $("#date").append(d + " " + m + " " + day + "," + " 2020")
         }
         timeCheck ();
-
 
 //This code controls the behavior of the Notes section
 displaySavedNotes();
