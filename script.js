@@ -213,6 +213,26 @@ function createArticles (NyTData){
             $("#articlesContainer").css({ display: "block" });
         };
         };
+        $("#generated-cards.card").parent().each(function(){
+                   
+            var faveBtn = $("<h1 class='readLaterBtn button is-primary is-small' style='left:80%; bottom: 35px; border-radius: 5px; text-align: center;'>Read<br>Later</h1>");
+            $(this).after(faveBtn);
+        })
+    
+        $(".readLaterBtn").on("click", function(){
+               
+            var faveArtText = $(this).prev().text();
+            var faveArtLink = $(this).prev().attr('href');
+            
+            var artNumber = localStorage.length;
+            var myArtKey = "article" + artNumber;
+    
+            var myLinkKey = "link" + artNumber;
+            
+            localStorage[myArtKey] = faveArtText;
+            localStorage[myLinkKey] = faveArtLink;
+            console.log("working")
+        })
         
     };
 
