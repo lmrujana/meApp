@@ -74,6 +74,10 @@
     border-radius: 10px;
 }
 
+#weather-container{
+   
+}
+
 
 .fade-in {
     animation: fadeIn ease 2s;
