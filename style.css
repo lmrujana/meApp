@@ -56,6 +56,11 @@ body{
     font-family: 'Poppins', 'Helveita', sans-serif;
 }
 
+.nyt-buttons{
+    font-weight: bold;
+    border-width: 0.15rem;
+}
+
 .cerulean-blue{
     background-color: #4059AD;
 }
