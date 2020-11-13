@@ -46,7 +46,7 @@ function hideWeather (){
               var cityTemp = Math.floor(response.main.temp)
               var cityHumidity = response.main.humidity
               var clouds = response.weather[0].icon;
-              var iconURL = "http://openweathermap.org/img/w/" + clouds + ".png"
+              var iconURL = "https://openweathermap.org/img/w/" + clouds + ".png"
               var weatherImage = $("<img>").attr("src", iconURL);
               var sunrise = new Date(response.sys.sunrise * 1000)
               var sunset = new Date(response.sys.sunset * 1000);
@@ -83,7 +83,7 @@ function hideWeather (){
                     var cityTemp2 = Math.floor(response2.list[6].main.temp);
                     var cityHumidity2 = response2.list[6].main.humidity;
                     var clouds2 = response2.list[6].weather[0].icon;
-                    var iconURL2 = "http://openweathermap.org/img/w/" + clouds2 + ".png"
+                    var iconURL2 = "https://openweathermap.org/img/w/" + clouds2 + ".png"
                     var weatherImage2 = $("<img>").attr("src", iconURL2);
                     var pop2 = response2.list[6].pop * 100;
                     var date2 = new Date();
@@ -281,7 +281,8 @@ $(".nyArticles").on("click", function(){
         weekday[5] = "Friday";
         weekday[6] = "Saturday";
         var d = weekday[date.getDay()] 
-        $("#date").append(d + " " + m + " " + day + "," + " 2020")
+        var y = date.getFullYear();
+        $("#date").append(d + " " + m + " " + day + "," + " " + y)
         }
         timeCheck ();
 
