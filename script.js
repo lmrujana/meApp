@@ -19,6 +19,12 @@ function quoteGenerator() {
 }
 
 // This Function asks the User if we can use current location and runs the showPosition function which gets the LAT and LON var
+hideWeather ();
+
+function hideWeather (){
+
+    $("#weather-container").hide();
+};
     function getLocation() {
         (navigator.geolocation); {
         navigator.geolocation.getCurrentPosition(showPosition);} 
@@ -35,6 +41,7 @@ function quoteGenerator() {
               console.log(response)
               var cityName = $("<p>")
             //   cityName.addClass("title is-3");
+            
               cityName = response.name;
               var cityTemp = Math.floor(response.main.temp)
               var cityHumidity = response.main.humidity
@@ -63,6 +70,9 @@ function quoteGenerator() {
               $("#sunrise").append(" " + sunrise.toLocaleTimeString("en-us"))
               $("#sunset").append(" " + sunset.toLocaleTimeString("en-us"))
               $("#today").append("<strong>" + month + "/" + day + "<br>" + m)
+                
+              $("#weather-container").show();
+              $("#weather-container").addClass("fade-in");
 
             var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=816992ff6a89882120cc71140b076bef&units=imperial"
             $.ajax({
