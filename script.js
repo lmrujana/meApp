@@ -85,7 +85,7 @@ function hideWeather (){
                     var clouds2 = response2.list[6].weather[0].icon;
                     var iconURL2 = "https://openweathermap.org/img/w/" + clouds2 + ".png"
                     var weatherImage2 = $("<img>").attr("src", iconURL2);
-                    var pop2 = response2.list[6].pop * 100;
+                    var pop2 = Math.floor(response2.list[6].pop * 100);
                     var date2 = new Date();
                     var month2 = date2.getMonth()+1;
                     var day2 = date2.getDate() + 1;
